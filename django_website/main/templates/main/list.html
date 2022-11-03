@@ -6,16 +6,25 @@
     <h1>{{ls.name}}</h1>
     <form action="#" method="post">
         {% csrf_token %}
-        <ul>
-            {% for item in ls.item_set.all %}
-                <li>
-                    <input type="checkbox" value="clicked" name="c{{item.id}}" {% if item.complete == True %}checked{% endif %}>
-                    {{item.text}}
-                </li>
-            {% endfor %}
-        </ul>
-        <button type="submit" name="save" value="save">Save</button>
-        <input type="text" name="new">
-        <button type="submit" name="newItem" value="newItem">Add Items</button>
+        
+        {% for item in ls.item_set.all %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="checkbox" value="clicked" name="c{{item.id}}" {% if item.complete == True %}checked{% endif %}>
+                    </div>
+                </div>
+                <input type="text" value="{{item.text}}" class="form-control">
+            </div>
+        {% endfor %}
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                
+                <button type="submit" name="newItem" value="newItem" class="btn btn-success">Add Items</button>
+            </div>
+            <input type="text" name="new">
+        </div>
+        <button type="submit" name="save" value="save" class="btn btn-success">Save</button>
+        
     </form>
 {% endblock %}  

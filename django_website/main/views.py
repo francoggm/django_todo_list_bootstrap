@@ -15,9 +15,9 @@ def index(response, id):
         if response.POST.get("save"):
             for item in ls.item_set.all():
                 if response.POST.get(f"c{item.id}") == "clicked":
-                    item.complete=True
+                    item.complete = True
                 else:
-                    item.complete=False
+                    item.complete = False
                 item.save()
         elif response.POST.get("newItem"):
             txt = response.POST.get("new")
